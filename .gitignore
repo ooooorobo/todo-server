@@ -2,6 +2,9 @@
 data/
 _volume/
 
+### ENV ###
+script/env/.env.prod
+
 node_modules
 !**/src/main/**/build/
 !**/src/test/**/build/
