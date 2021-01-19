@@ -1,4 +1,11 @@
 import {ConnectionOptions} from "typeorm";
+import dotenv from "dotenv";
+
+if (process.env.NODE_ENV === 'local') {
+    dotenv.config({path: "script/env/.env.local"})
+} else if (process.env.NODE_ENV === 'prod') {
+    dotenv.config({path: "script/env/.env.prod"})
+}
 
 const STORAGE_DATABASE_HOST = process.env.STORAGE_DATABASE_HOST || "localhost"
 const STORAGE_DATABASE_PORT = process.env.STORAGE_DATABASE_PORT || 3306
