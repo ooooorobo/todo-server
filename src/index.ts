@@ -1,11 +1,14 @@
 import Koa from "koa";
 import Router from "koa-router"
+import bodyParser from "koa-bodyparser";
 
 import dotenv from 'dotenv'
 
 import "reflect-metadata"
 import {createConnection} from "typeorm";
 import {TypeOrmConfig} from "./lib/orm-config";
+
+import api from "./api"
 
 if (process.env.NODE_ENV === 'local') {
     dotenv.config({path: "script/env/.env.local"})
@@ -18,12 +21,16 @@ if (process.env.NODE_ENV === 'local') {
 createConnection(TypeOrmConfig)
     .then(async (connection) => {
         const app = new Koa()
+
         const router = new Router()
 
         router.get('/', (ctx, next) => {
             ctx.body = 'hello world'
         })
 
+        router.use('/api', api.routes())
+
+        app.use(bodyParser())
         app.use(router.routes())
         app.use(router.allowedMethods())
 
