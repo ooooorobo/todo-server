@@ -1,4 +1,4 @@
 export enum YesNo {
-    Y,
-    N
+    Y = "Y",
+    N = "N",
 }

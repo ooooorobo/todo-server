@@ -24,4 +24,21 @@ todo.post("/add", async (ctx, next) => {
     ctx.body = stringified
 })
 
+todo.post("/complete", async (ctx, next) => {
+    const {todoId, completed} = ctx.request.body
+
+    const result = await TodoService.setTodoCompleted(todoId, completed)
+
+    ctx.body = result
+})
+
+todo.post("/remove", async (ctx, next) => {
+    const {todoId} = ctx.request.body
+
+    // TODO :: 권한 확인
+    const result = await TodoService.removeTodoEntity(todoId)
+
+    ctx.body = result
+})
+
 export default todo

@@ -26,7 +26,7 @@ export class TodoEntity {
 
     @Column({ type: "datetime", name: "created_at" }) createdAt!: string
     @Column({ type: "datetime", name: "updated_at" }) updatedAt!: string
-    // @Column({ type: "datetime", name: "deleted_at", nullable: true }) deletedAt: string | undefined
+    @Column({ type: "datetime", name: "deleted_at", nullable: true }) deletedAt: string | undefined
 
     @Column({ name: "created_by" }) createdBy!: string
     @Column({ name: "updated_by" }) updatedBy!: string
